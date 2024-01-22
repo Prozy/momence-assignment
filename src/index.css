@@ -1,6 +1,20 @@
+/* momence color pallete */
+:root {
+  --indigo: #6360e1;
+  --white: white;
+  --black: #1a181c;
+  --ghost-white: #f3f3fd;
+  --dim-grey: #5d5c69;
+  --white-smoke: #f8f7fa;
+  --black-bg: #010314;
+  --red: #df0043;
+  --grey200: #ececee;
+  --medium-sea-green: #00a857;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: -apple-system, Epilogue, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
