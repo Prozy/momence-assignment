@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Logo } from "./ui/Logo";
+import { LogoUI } from "./ui/LogoUI";
 import { CurrencyConverterForm } from "./CurrencyConverterForm";
 
 const StyledHeader = styled.header`
@@ -12,12 +12,23 @@ const StyledHeader = styled.header`
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+`;
+
+const StyledInner = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50vw;
+  max-width: 1000px;
   padding-top: 120px;
   padding-bottom: 120px;
 `;
 
 const StyledTitle = styled.h1`
   margin-bottom: 0;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
 `;
 
 const StyledDescription = styled.p`
@@ -29,10 +40,12 @@ const StyledDescription = styled.p`
 export const Header = () => {
   return (
     <StyledHeader>
-      <Logo />
-      <StyledTitle>Currency converter</StyledTitle>
-      <StyledDescription>Tech task assignment</StyledDescription>
-      <CurrencyConverterForm />
+      <StyledInner>
+        <LogoUI />
+        <StyledTitle>Currency converter</StyledTitle>
+        <StyledDescription>Tech task assignment</StyledDescription>
+        <CurrencyConverterForm />
+      </StyledInner>
     </StyledHeader>
   );
 };

@@ -10,6 +10,7 @@
   --red: #df0043;
   --grey200: #ececee;
   --medium-sea-green: #00a857;
+  --color-border-neutral: #0e0f0c1f;
 }
 
 body {
@@ -24,4 +25,8 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+* {
+  box-sizing: border-box;
 }

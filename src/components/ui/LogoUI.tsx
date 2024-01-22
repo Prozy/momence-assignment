@@ -22,7 +22,7 @@ const StyledLogoTypography = styled.img`
   pointer-events: none;
 `;
 
-export const Logo = () => {
+export const LogoUI = () => {
   return (
     <StyledLogoContainer href="https://momence.com/">
       <StyledLogo src={logo} alt="logo" />

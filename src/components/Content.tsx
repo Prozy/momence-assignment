@@ -1,10 +1,9 @@
 import React from "react";
+
 import styled from "styled-components";
 import { CurrencyTable } from "./CurrencyTable";
 
 const StyledSection = styled.section`
-  padding-top: 120px;
-  padding-bottom: 120px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,10 +12,29 @@ const StyledSection = styled.section`
   row-gap: 50px;
 `;
 
+const StyledInner = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50vw;
+  max-width: 1000px;
+  padding-bottom: 120px;
+`;
+
+const StyledPull = styled.div`
+  position: relative;
+  width: 100%;
+  top: -60px;
+`;
+
 export const Content = () => {
   return (
     <StyledSection>
-      <CurrencyTable />
+      <StyledInner>
+        <StyledPull>
+          <CurrencyTable />
+        </StyledPull>
+      </StyledInner>
     </StyledSection>
   );
 };
