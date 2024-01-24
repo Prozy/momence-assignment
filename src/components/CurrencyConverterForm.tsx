@@ -1,34 +1,23 @@
 import React, { useCallback, useState } from "react";
 import type { ChangeEvent } from "react";
 import { CurrencyConverterFormUI } from "./ui/CurrencyConverterFormUI";
-import { DUMMY_RESPONSE } from "../data-access/api";
 import { roundFloatToThreeDecimalPlaces } from "../utils";
 import { Currency } from "../types";
-
-// TODO: remove once it's comming via props
-const dummyCZKInputData: { value: number; selected: Currency } = {
-  value: 1000,
-  selected:
-    DUMMY_RESPONSE.find((currency) => currency.code === "CZK") ||
-    DUMMY_RESPONSE[0],
-};
-const dummyEURInputData: { value: number; selected: Currency } = {
-  value: 40.36,
-  selected:
-    DUMMY_RESPONSE.find((currency) => currency.code === "EUR") ||
-    DUMMY_RESPONSE[0],
-};
+import { currencyCZK, defaultCZKInputValue } from "../consts";
+import { useDataContext } from "../data-access/DataContext";
 
 export const CurrencyConverterForm = () => {
+  const { currencyTable, metaData } = useDataContext();
+
   const [fromValue, setFromValue] = useState(
-    roundFloatToThreeDecimalPlaces(dummyCZKInputData.value)
+    roundFloatToThreeDecimalPlaces(defaultCZKInputValue)
   );
   const [selectedToCurrency, setSelectedToCurrency] = useState(
-    dummyEURInputData.selected
+    currencyTable[0]
   );
   const [toValue, setToValue] = useState(
     roundFloatToThreeDecimalPlaces(
-      (dummyCZKInputData.value / selectedToCurrency.rate) *
+      (defaultCZKInputValue / selectedToCurrency.rate) *
         selectedToCurrency.amount
     )
   );
@@ -75,7 +64,7 @@ export const CurrencyConverterForm = () => {
     <CurrencyConverterFormUI
       fromInput={{
         value: fromValue,
-        selected: dummyCZKInputData.selected,
+        selected: currencyCZK,
         onChange: onFromValueChange,
       }}
       toInput={{
@@ -84,6 +73,8 @@ export const CurrencyConverterForm = () => {
         onChange: onToValueChange,
       }}
       onCurrencyChange={onCurrencyChange}
+      currenciesList={currencyTable}
+      metaData={metaData}
     />
   );
 };

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Currency } from "../../types";
 import { CountryFlagUI } from "./CountryFlagUI";
 import { exceptionCountries } from "../../consts";
+import { SkeletonBlockUI } from "./SkeletonBlockUI";
 
 const StyledContainer = styled.div`
   display: block;
@@ -60,25 +61,26 @@ const StyledCountryCell = styled.div`
 `;
 
 type Props = {
+  headerTitles?: Array<string>;
   data: Array<Currency>;
 };
 
-export const CurrencyTableUI = ({ data }: Props) => {
+export const CurrencyTableUI = ({ data, headerTitles }: Props) => {
   return (
     <StyledContainer>
       <StyledTable>
         <thead>
           <StyledTR>
-            <StyledTH align="left">Country</StyledTH>
-            <StyledTH align="left">Currency</StyledTH>
-            <StyledTH align="right">Amount</StyledTH>
-            <StyledTH align="center">Code</StyledTH>
-            <StyledTH align="right">Rate</StyledTH>
+            <StyledTH align="left">{headerTitles?.[0]}</StyledTH>
+            <StyledTH align="left">{headerTitles?.[1]}</StyledTH>
+            <StyledTH align="right">{headerTitles?.[2]}</StyledTH>
+            <StyledTH align="center">{headerTitles?.[3]}</StyledTH>
+            <StyledTH align="right">{headerTitles?.[4]}</StyledTH>
           </StyledTR>
         </thead>
         <tbody>
           {data.map((row) => (
-            <StyledTR>
+            <StyledTR key={row.code}>
               <StyledTD>
                 <StyledCountryCell>
                   <CountryFlagUI currency={row} />

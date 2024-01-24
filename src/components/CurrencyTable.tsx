@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { CurrencyTableUI } from "./ui/CurrencyTableUI";
-import { DUMMY_RESPONSE } from "../data-access/api";
+import { useDataContext } from "../data-access/DataContext";
+import { CurrencyTableSkeletonUI } from "./ui/CurrencyTableSkeletonUI";
 
 const StyledNote = styled.p`
   font-size: 16px;
@@ -10,9 +11,18 @@ const StyledNote = styled.p`
 `;
 
 export const CurrencyTable = () => {
+  const { currencyTable, isLoading, currencyTableHeaders } = useDataContext();
+
   return (
     <>
-      <CurrencyTableUI data={DUMMY_RESPONSE} />
+      {isLoading ? (
+        <CurrencyTableSkeletonUI />
+      ) : (
+        <CurrencyTableUI
+          data={currencyTable}
+          headerTitles={currencyTableHeaders}
+        />
+      )}
       <StyledNote>
         <sup>*</sup> With effect from January 2, 2024, the quantity changes from
         1 to 100

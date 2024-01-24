@@ -2,6 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { LogoUI } from "./ui/LogoUI";
 import { CurrencyConverterForm } from "./CurrencyConverterForm";
+import { SkeletonBlockUI } from "./ui/SkeletonBlockUI";
+import { CurrencyConverterFormSkeletonUI } from "./ui/CurrencyConverterFormSkeletonUI";
+import { useDataContext } from "../data-access/DataContext";
 
 const StyledHeader = styled.header`
   background-color: var(--indigo);
@@ -38,13 +41,15 @@ const StyledDescription = styled.p`
 `;
 
 export const Header = () => {
+  const { isLoading, isError } = useDataContext();
   return (
     <StyledHeader>
       <StyledInner>
         <LogoUI />
         <StyledTitle>Currency converter</StyledTitle>
         <StyledDescription>Tech task assignment</StyledDescription>
-        <CurrencyConverterForm />
+        {isLoading && <CurrencyConverterFormSkeletonUI />}
+        {!isLoading && !isError && <CurrencyConverterForm />}
       </StyledInner>
     </StyledHeader>
   );

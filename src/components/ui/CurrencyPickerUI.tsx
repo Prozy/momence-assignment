@@ -16,13 +16,13 @@ const StyledContainer = styled.div`
   position: relative;
   display: flex;
 `;
-const StyledTrigger = styled.div<{ isDisabled?: boolean }>`
+const StyledTrigger = styled.div<{ $isDisabled?: boolean }>`
   display: flex;
   flex-direction: row;
   gap: 8px;
   align-items: center;
-  cursor: ${(props) => (props.isDisabled === true ? "intial" : "pointer")};
-  pointer-events: ${(props) => (props.isDisabled === true ? "none" : "auto")};
+  cursor: ${(props) => (props.$isDisabled === true ? "intial" : "pointer")};
+  pointer-events: ${(props) => (props.$isDisabled === true ? "none" : "auto")};
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
@@ -63,7 +63,7 @@ const StyledSearchInput = styled.input`
 const StyledScrollContainer = styled.div`
   overflow: auto;
 `;
-const StyledItem = styled.div<{ isSelected?: boolean }>`
+const StyledItem = styled.div<{ $isSelected?: boolean }>`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -74,7 +74,7 @@ const StyledItem = styled.div<{ isSelected?: boolean }>`
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
   background-color: ${(props) =>
-    props.isSelected ? "var(--white-smoke)" : "var(--white)"};
+    props.$isSelected ? "var(--white-smoke)" : "var(--white)"};
 
   &:hover {
     background: var(--grey200);
@@ -123,7 +123,7 @@ const ListItem = ({
     <StyledItem
       onClick={onClickHandler}
       onKeyDown={onKeydownHandler}
-      isSelected={isSelected}
+      $isSelected={isSelected}
       tabIndex={0}
       role="button"
     >
@@ -187,7 +187,7 @@ export const CurrencyPickerUI = ({
       <StyledTrigger
         onClick={toggleDropdown}
         onKeyDown={onTriggerKeydown}
-        isDisabled={isDisabled}
+        $isDisabled={isDisabled}
         tabIndex={isDisabled ? undefined : 0}
         role="button"
       >

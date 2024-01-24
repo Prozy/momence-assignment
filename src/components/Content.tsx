@@ -2,6 +2,7 @@ import React from "react";
 
 import styled from "styled-components";
 import { CurrencyTable } from "./CurrencyTable";
+import { useDataContext } from "../data-access/DataContext";
 
 const StyledSection = styled.section`
   display: flex;
@@ -28,11 +29,19 @@ const StyledPull = styled.div`
 `;
 
 export const Content = () => {
+  const { isError } = useDataContext();
+
   return (
     <StyledSection>
       <StyledInner>
         <StyledPull>
-          <CurrencyTable />
+          {!isError && <CurrencyTable />}
+          {isError && (
+            <h1>
+              We're sorry, but something went wrong while loading data. Please
+              refresh the page or try again later.
+            </h1>
+          )}
         </StyledPull>
       </StyledInner>
     </StyledSection>

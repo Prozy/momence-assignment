@@ -1,4 +1,5 @@
 import * as Flag from "country-flag-icons/react/1x1";
+import { Currency } from "./types";
 
 export const currencyToFlagMap: Record<string, typeof Flag.CZ> = {
   AUD: Flag.AU,
@@ -36,3 +37,16 @@ export const currencyToFlagMap: Record<string, typeof Flag.CZ> = {
 };
 
 export const exceptionCountries = ["Turkey"];
+
+export const currencyCZK: Currency = {
+  country: "Czech Republic",
+  currency: "czech koruna",
+  amount: 1,
+  code: "CZK",
+  rate: 1,
+};
+
+export const defaultCZKInputValue = 1000;
+
+export const CNBExchangeRateURL =
+  "https://momence-assignment-server.vercel.app/api/v1/exchange-rate";

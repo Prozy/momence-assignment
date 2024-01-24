@@ -3,8 +3,8 @@ import type { ChangeEvent } from "react";
 
 import styled from "styled-components";
 import { CurrencyPickerUI } from "./CurrencyPickerUI";
-import { DUMMY_RESPONSE } from "../../data-access/api";
 import { Currency } from "../../types";
+import { SkeletonBlockUI } from "./SkeletonBlockUI";
 
 const StyledLabel = styled.label`
   display: flex;
@@ -45,6 +45,7 @@ const StyledInput = styled.input`
 const StyledRightSlot = styled.div`
   display: flex;
   justify-content: end;
+  align-items: center;
   width: 128px;
   height: 56px;
   position: absolute;
@@ -54,11 +55,12 @@ const StyledRightSlot = styled.div`
 
 type Props = {
   label: string;
-  selected: Currency;
+  selected?: Currency;
   hasPicker?: boolean;
-  value: number;
+  value?: number;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onCurrencyChange: (currency: Currency) => void;
+  currenciesList: Array<Currency>;
 };
 
 export const CurrencyInputUI = ({
@@ -68,6 +70,7 @@ export const CurrencyInputUI = ({
   selected,
   onChange,
   onCurrencyChange,
+  currenciesList,
 }: Props) => {
   return (
     <StyledInputContainer>
@@ -84,8 +87,8 @@ export const CurrencyInputUI = ({
         <CurrencyPickerUI
           onCurrencyChange={onCurrencyChange}
           isDisabled={!hasPicker}
-          currenciesList={DUMMY_RESPONSE}
-          selected={selected}
+          currenciesList={currenciesList}
+          selected={selected!} // this is rendered only when data are loaded
         />
       </StyledRightSlot>
     </StyledInputContainer>

@@ -5,6 +5,7 @@ import { CurrencyInputUI } from "./CurrencyInputUI";
 import { BsArrowLeftRight } from "react-icons/bs";
 import { Currency } from "../../types";
 import { roundFloatToThreeDecimalPlaces } from "../../utils";
+import { DataContext } from "../../data-access/DataContext";
 
 const StyledContainer = styled.div`
   display: flex;
@@ -30,16 +31,22 @@ const StyledRow = styled.div`
 `;
 
 const StyledConversion = styled.p`
+  display: flex;
+  align-items: center;
   font-size: 20px;
   line-height: 32px;
+  height: 32px;
   font-weight: normal;
   margin: 0;
   margin-top: 8px;
   padding: 0 12px;
 `;
 const StyledTime = styled.p`
+  display: flex;
+  align-items: center;
   font-size: 16px;
   line-height: 20px;
+  height: 20px;
   font-weight: normal;
   margin-bottom: 0;
   padding: 0 12px;
@@ -62,12 +69,16 @@ type Props = {
   fromInput: InputData;
   toInput: InputData;
   onCurrencyChange: (currency: Currency) => void;
+  currenciesList: Array<Currency>;
+  metaData: DataContext["metaData"];
 };
 
 export const CurrencyConverterFormUI = ({
   fromInput,
   toInput,
   onCurrencyChange,
+  currenciesList,
+  metaData,
 }: Props) => {
   return (
     <StyledContainer>
@@ -76,22 +87,32 @@ export const CurrencyConverterFormUI = ({
           label="Amount"
           {...fromInput}
           onCurrencyChange={onCurrencyChange}
+          currenciesList={currenciesList}
         />
         <StyledDoubleArrow size={24} />
         <CurrencyInputUI
           label="Converted to"
           {...toInput}
           onCurrencyChange={onCurrencyChange}
+          currenciesList={currenciesList}
           hasPicker
         />
       </StyledRow>
       <StyledRow>
-        <StyledConversion>{`1 ${fromInput.selected.code} = ${roundFloatToThreeDecimalPlaces(toInput.selected.amount / toInput.selected.rate)} ${toInput.selected.code}`}</StyledConversion>
-        <StyledConversion>{`${toInput.selected.amount} ${toInput.selected.code} = ${toInput.selected.rate} ${fromInput.selected.code}`}</StyledConversion>
+        <StyledConversion>
+          {`1 ${fromInput.selected.code} = ${roundFloatToThreeDecimalPlaces(toInput.selected.amount / toInput.selected.rate)} ${toInput.selected.code}`}
+        </StyledConversion>
+
+        <StyledConversion>
+          {`${toInput.selected.amount} ${toInput.selected.code} = ${toInput.selected.rate} ${fromInput.selected.code}`}
+        </StyledConversion>
       </StyledRow>
       {/* TODO: should come from props */}
       <StyledTime>
-        <sup>*</sup>Exchange rate valid for January 22, 2024
+        <span>
+          <sup>*</sup>
+          {`Exchange rate valid for ${metaData?.month} ${metaData?.day}, ${metaData?.year}`}
+        </span>
       </StyledTime>
     </StyledContainer>
   );
