@@ -4,7 +4,6 @@ import type { ChangeEvent } from "react";
 import styled from "styled-components";
 import { CurrencyPickerUI } from "./CurrencyPickerUI";
 import { Currency } from "../../types";
-import { SkeletonBlockUI } from "./SkeletonBlockUI";
 
 const StyledLabel = styled.label`
   display: flex;
@@ -20,6 +19,11 @@ const StyledLabelText = styled.span`
 `;
 const StyledInputContainer = styled.div`
   position: relative;
+  flex-grow: 1;
+
+  @media (max-width: 1110px) {
+    width: 100%;
+  }
 `;
 const StyledInput = styled.input`
   box-sizing: border-box;

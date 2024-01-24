@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { LogoUI } from "./ui/LogoUI";
 import { CurrencyConverterForm } from "./CurrencyConverterForm";
-import { SkeletonBlockUI } from "./ui/SkeletonBlockUI";
 import { CurrencyConverterFormSkeletonUI } from "./ui/CurrencyConverterFormSkeletonUI";
 import { useDataContext } from "../data-access/DataContext";
 
@@ -25,6 +24,10 @@ const StyledInner = styled.div`
   max-width: 1000px;
   padding-top: 120px;
   padding-bottom: 120px;
+
+  @media (max-width: 1780px) {
+    width: 80vw;
+  }
 `;
 
 const StyledTitle = styled.h1`

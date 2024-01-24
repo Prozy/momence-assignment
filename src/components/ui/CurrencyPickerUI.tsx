@@ -33,8 +33,8 @@ const StyledCode = styled.span`
   font-weight: bold;
   flex-grow: 1;
 `;
-const StyledDropdown = styled.div<{ isOpen?: boolean }>`
-  display: ${(props) => (props.isOpen ? "flex" : "none")};
+const StyledDropdown = styled.div<{ $isOpen?: boolean }>`
+  display: ${(props) => (props.$isOpen ? "flex" : "none")};
   flex-direction: column;
   position: absolute;
   width: 300px;
@@ -196,7 +196,7 @@ export const CurrencyPickerUI = ({
         {!isDisabled && <StyledChevron size={20} />}
       </StyledTrigger>
       {!isDisabled && isOpen && (
-        <StyledDropdown isOpen={isOpen}>
+        <StyledDropdown $isOpen={isOpen}>
           <>
             <StyledSearchInput
               type="search"

@@ -10,11 +10,25 @@ const StyledSkeletonBlock = styled.span<{
   height: ${(props) => props.height || 8}px;
   width: ${(props) => (props.width ? `${props.width}px` : "100%")};
   position: relative;
-  overflow: hidden;
-  background-color: var(
-    --${(props) => (props.color === "dark" ? "dim-grey" : "grey200")}
-  );
   border-radius: 100px;
+  animation: loading 2s ease infinite;
+  background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.4) 30%,
+      transparent 60%
+    )
+    var(--${(props) => (props.color === "dark" ? "dim-grey" : "grey200")});
+  background-size: 200%;
+
+  @keyframes loading {
+    0% {
+      background-position-x: 100%;
+    }
+    100% {
+      background-position-x: -100%;
+    }
+  }
 `;
 
 type Props = {

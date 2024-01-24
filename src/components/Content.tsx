@@ -20,6 +20,10 @@ const StyledInner = styled.div`
   width: 50vw;
   max-width: 1000px;
   padding-bottom: 120px;
+
+  @media (max-width: 1780px) {
+    width: 80vw;
+  }
 `;
 
 const StyledPull = styled.div`

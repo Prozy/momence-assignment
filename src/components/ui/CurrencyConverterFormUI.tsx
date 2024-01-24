@@ -28,6 +28,11 @@ const StyledRow = styled.div`
   align-items: center;
   flex-wrap: wrap;
   gap: 20px;
+
+  @media (max-width: 1110px) {
+    flex-direction: column;
+    gap: 8px;
+  }
 `;
 
 const StyledConversion = styled.p`
@@ -40,6 +45,14 @@ const StyledConversion = styled.p`
   margin: 0;
   margin-top: 8px;
   padding: 0 12px;
+
+  @media (max-width: 1110px) {
+    width: 100%;
+
+    &:last-of-type {
+      margin-top: 0;
+    }
+  }
 `;
 const StyledTime = styled.p`
   display: flex;
@@ -57,6 +70,10 @@ const StyledDoubleArrow = styled(BsArrowLeftRight)`
   display: block;
   width: 24px;
   height: 100%;
+
+  @media (max-width: 1110px) {
+    display: none;
+  }
 `;
 
 type InputData = {
